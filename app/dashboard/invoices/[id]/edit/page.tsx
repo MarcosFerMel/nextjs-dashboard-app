@@ -1,7 +1,6 @@
 import Form from '@/app/ui/invoices/edit-form';
 import Breadcrumbs from '@/app/ui/invoices/breadcrumbs';
 import { fetchInvoiceById, fetchCustomers } from '@/app/lib/data';
-import { updateInvoice } from '@/app/lib/actions';
 import { notFound } from 'next/navigation';
 import { Metadata } from 'next';
 
@@ -9,7 +8,6 @@ type Props = {
   params: { id: string };
 };
 
-// 📝 Genera metadatos dinámicos para la página
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const invoice = await fetchInvoiceById(params.id);
 
@@ -26,7 +24,6 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   };
 }
 
-// 📝 Página principal
 export default async function Page({ params }: Props) {
   const id = params.id;
   const [invoice, customers] = await Promise.all([
